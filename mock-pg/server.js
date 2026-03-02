@@ -208,7 +208,9 @@ app.post('/stats/reset', (req, res) => {
   res.json({ message: '초기화 완료' });
 });
 
-app.listen(3000, () => {
-  console.log('Mock PG (PortOne style) on http://localhost:3000');
+// Cloud Run을 위해 PORT 환경 변수 사용 (로컬은 3000, Cloud Run은 8080)
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Mock PG (PortOne style) on http://localhost:${port}`);
   console.log('시나리오: optimistic | realistic | peak | worst');
 });

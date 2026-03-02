@@ -20,8 +20,8 @@ terraform/terraform.tfstate.backup
 terraform/*.tfvars
 !terraform/terraform.tfvars.example
 
-# ===== K6 결과 =====
-k6-result-*.json
+# ===== K6 결과 (루트 레벨 임시 파일만 제외, k6-results/ 폴더는 커밋) =====
+/k6-result-*.json
 
 # ===== Frontend (데모용 임시 폴더) =====
 frontend-sample/
