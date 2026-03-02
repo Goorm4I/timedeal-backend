@@ -1,0 +1,18 @@
+# Terraform state (민감 정보 포함 - 절대 커밋 금지)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Plan 파일
+*.tfplan
+
+# 로컬 변수 오버라이드 (비밀번호 등)
+*.auto.tfvars
+terraform.tfvars.local
+
+# 플러그인 캐시
+.terraform/
+.terraform.lock.hcl
+
+# 크래시 로그
+crash.log

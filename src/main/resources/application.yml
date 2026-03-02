@@ -1,0 +1,58 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 400          # 기본 200 → 400 (PG 대기 동안 묶이는 thread 감안)
+      min-spare: 50
+    accept-count: 200   # 큐잉 대기 가능한 요청 수
+    max-connections: 8192
+
+spring:
+  application:
+    name: timedeal-backend
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_NAME:timedeal}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 50          # 20 → 50 (1200 VU 극한 테스트용)
+      minimum-idle: 10
+      connection-timeout: 3000       # 5000 → 3000ms (빠른 실패 → 빠른 복구)
+      idle-timeout: 300000
+      max-lifetime: 600000
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false                  # 부하 테스트 시 SQL 로그 off
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          batch_size: 50             # 배치 insert 최적화
+
+payment:
+  pg:
+    url: ${PG_URL:http://localhost:3000}
+    timeout: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    com.timedeal: INFO

@@ -1,0 +1,54 @@
+# ===== Java / Maven =====
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+!.mvn/wrapper/maven-wrapper.jar
+
+# ===== Spring Boot =====
+*.log
+spring.log
+logs/
+
+# ===== Terraform =====
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+!terraform/terraform.tfvars.example
+
+# ===== K6 결과 =====
+k6-result-*.json
+
+# ===== Frontend (데모용 임시 폴더) =====
+frontend-sample/
+frontend-temp/
+frontend-demo.zip
+node_modules/
+
+# ===== IDE =====
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# ===== macOS =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V8
+.Trashes
+
+# ===== 환경 변수 / 시크릿 =====
+.env
+.env.local
+*.pem
+*.key
+
+# ===== 임시 파일 =====
+*.tmp
+*.bak
+*.swp
